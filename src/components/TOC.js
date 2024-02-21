@@ -1,6 +1,21 @@
 import React, { Component } from 'react';
 
 class TOC extends Component {
+    /*
+    1. render 이전에 shouldComponentUpdate가 실행된다.
+    2. shouldComponentUpdate의 반환값이 true이면 render가 호출되고, false이면 render가 호출되지 않도록 약속되어 있다.
+    3. shouldComponentUpdate를 통해 새롭게 바뀐 값과 이전 값에 접근할 수 있다.
+    */
+    shouldComponentUpdate(newProps, newState) {
+        console.log("==>TOC renter shouldComponentUpdate",
+            newProps.data, // 변경된 props 값
+            this.props.data // 원본 props 값
+        );
+        if(this.props.data === newProps.data) {
+            return false;
+        }
+        return true;
+    }
     render() {
         console.log('TOC render');
         var lists = [];
